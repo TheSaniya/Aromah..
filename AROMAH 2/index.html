@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SAF">
+    <meta name="keywords" content="Aromah, food, dishes, menu, fast food, burger, pizza, chinese, italian, indian">
+    <meta name="description" content="Find your everyday cooking inspiration on Recipe Website. Discover recipes, cooks, videos, and how-tos based on the food you love.">
+    <meta property="og:type" content="webApp" />
+    <meta property="og:title" content="Aromah" />
+    <meta property="og:description" content="Find your everyday cooking inspiration on Recipe Website. Discover recipes, cooks, videos, and how-tos based on the food you love." />
+    <meta property="og:image" content="assets/icons8-bagel-96.png" />
+    <meta property="og:url" content="https://debrajhyper.github.io/Recipe_App/" />
+    <meta property="og:site_name" content="Aromatic Adventures" /> 
+    <meta name="twitter:title" content="Aromatic Adventures">
+    <meta name="twitter:description" content="Find your everyday cooking inspiration on Recipe Website. Discover recipes, cooks, videos, and how-tos based on the food you love.">
+    <meta name="twitter:image" content="assets/icons8-bagel-96.png">
+    <meta name="twitter:site" content="@Debraj33938079">
+    <meta name="twitter:creator" content="@Debraj33938079">
+    <title>Aromah</title>
+    <link rel="icon" href="logo.png" type="image/icon type">
+    <link rel="stylesheet" href="assets/scroll.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navigation Bar</title>
+    <style type="text/css">
+        * {
+
+            text-decoration: none;
+        }
+        .navbar {
+            background: rgb(42, 41, 41); font-family: calibri; padding-right: 15px; padding-left: 15px;
+        }
+        .navdiv {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo a {
+            font-size: 35px; font-weight: 600; color: white;
+        }
+        li {
+            list-style: none; display: inline-block;
+        }
+        li a {
+            color: white; font-size: 18px; font-weight: bold; margin-right: 25px;
+        }
+        .button-container, .bmi-calculator {
+            margin-top: 30px; /* Adjust the margin as needed */
+            text-align: center;
+        }
+        .bmi-calculator {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .bmi-calculator input, .bmi-calculator select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .bmi-calculator button, .filter-button {
+            background-color: rgb(193, 28, 205); 
+            margin-left: 10px; 
+            border-radius: 10px; 
+            padding: 10px; 
+            width: 100px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .bmi-calculator button:hover, .filter-button:hover {
+            background-color: rgb(170, 25, 180);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="#">Aromah</a> </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="index2.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container initial">
+            <lottie-player src="https://assets9.lottiefiles.com/temp/lf20_nXwOJj.json" background="transparent" speed="1" style="height: 200px;" loop autoplay></lottie-player>
+            <h1 class="brand">Aromah</h1>
+            <form>
+                <input type="text" placeholder="Search Your Recipe...">
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_tnrzlN.json" mode="bounce" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></lottie-player>
+                <!--<ion-icon name="search"></ion-icon>-->
+            </form>
+            <div class="bmi-calculator" style="margin: 20%;margin-top: 5%; margin-bottom:1% ;">
+                <input type="number" id="weight" placeholder="Weight (kg)">
+                <input type="number" id="height" placeholder="Height (cm)">
+                <input type="number" id="age" placeholder="Age">
+                <select id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <button type="button" onclick="calculateBMI()">Calculate</button>
+                <button type="button" onclick="clearFields()">Clear</button>
+            </div>
+            <div style="margin: 20%;margin-top: 4%; ">
+            <div class="result" id="bmiResult"></div>
+            <div class="result" id="calorieResult"></div>
+            <br>
+            <button class="filter-button" onclick="filterRecipes()">Healthy Bite</button>
+        </div>
+            <div class="search-result" id="searchResult">
+                
+                <!-- Add more items as needed -->
+            </div>
+        </div>  
+    </section>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="assets/script.js"></script>
+    <script>
+        function calculateBMI() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            
+            if (weight && height && age && gender) {
+                // Calculate BMI
+                const heightInMeters = height / 100;
+                const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+                document.getElementById('bmiResult').innerText = `Your BMI is ${bmi}`;
+
+                // Calculate daily calorie intake
+                let bmr;
+                if (gender === 'male') {
+                    bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+                } else {
+                    bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+                }
+                const calorieIntake = (bmr * 1.2).toFixed(2); // Assuming sedentary activity level
+                document.getElementById('calorieResult').innerText = `Your daily calorie intake should be approximately ${calorieIntake} calories.`;
+            } else {
+                document.getElementById('bmiResult').innerText = 'Please enter weight, height, age, and gender.';
+                document.getElementById('calorieResult').innerText = '';
+            }
+        }
+
+        function clearFields() {
+            document.getElementById('weight').value = '';
+            document.getElementById('height').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('gender').value = 'male';
+            document.getElementById('bmiResult').innerText = '';
+            document.getElementById('calorieResult').innerText = '';
+            // Clear the search results
+            document.querySelectorAll('.item').forEach(item => {
+                item.classList.remove('hidden');
+            });
+        }
+
+        function filterRecipes() {
+            const calorieResult = document.getElementById('calorieResult').innerText;
+            const calorieLimit = calorieResult.match(/\d+(\.\d+)?/g);
+            if (calorieLimit) {
+                const limit = parseFloat(calorieLimit[0]);
+                document.querySelectorAll('.item').forEach(item => {
+                    const calories = parseFloat(item.querySelector('.item-data').innerText.match(/\d+(\.\d+)?/g)[0]);
+                    if (calories > limit) {
+                        item.classList.add('hidden');
+                    } else {
+                        item.classList.remove('hidden');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
